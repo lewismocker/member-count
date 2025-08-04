@@ -19,6 +19,6 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git add public/count.json
+          git add count.json
           git commit -m "Update count"
           git push
