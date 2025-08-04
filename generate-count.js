@@ -25,4 +25,4 @@ function getCurrentCount() {
 }
 
 const count = getCurrentCount();
-fs.writeFileSync('public/count.json', JSON.stringify({ count }, null, 2), 'utf-8');
+fs.writeFileSync('count.json', JSON.stringify({ count }, null, 2), 'utf-8');
