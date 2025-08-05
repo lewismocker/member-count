@@ -2,8 +2,8 @@ name: Update Member Count
 
 on:
   schedule:
-    - cron: '* * * * *'        # Runs every minute
-  workflow_dispatch:           # Still allows manual runs
+    - cron: '* * * * *'      # every minute
+  workflow_dispatch:          # allows manual trigger
 
 jobs:
   update:
@@ -13,12 +13,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - run: npm install
       - run: node generate-count.js
       - name: Commit and Push
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add count.json
-          git commit -m "Update count"
+          git commit -m "Update count" || echo "No changes to commit"
           git push
