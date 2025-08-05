@@ -2,22 +2,27 @@ name: Update Member Count
 
 on:
   schedule:
-    - cron: '* * * * *'      # every minute
-  workflow_dispatch:          # allows manual trigger
+    - cron: '* * * * *'  # every minute
+  workflow_dispatch:
 
 jobs:
   update:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - run: node generate-count.js
-- name: Commit and Push
-  run: |
-    git config --global user.name "github-actions"
-    git config --global user.email "github-actions@github.com"
-    git add count.json || true
-    git commit -m "Update count" || echo "No changes to commit"
-    git push || echo "Push failed (maybe no changes)"
+
+      - name: Run count script
+        run: node generate-count.js
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add count.json || true
+          git commit -m "Update count" || echo "No changes to commit"
+          git push || echo "Push failed (maybe no changes)"
