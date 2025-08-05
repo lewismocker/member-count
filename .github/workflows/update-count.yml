@@ -14,10 +14,10 @@ jobs:
         with:
           node-version: '18'
       - run: node generate-count.js
-      - name: Commit and Push
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-          git add count.json
-          git commit -m "Update count" || echo "No changes to commit"
-          git push
+- name: Commit and Push
+  run: |
+    git config --global user.name "github-actions"
+    git config --global user.email "github-actions@github.com"
+    git add count.json || true
+    git commit -m "Update count" || echo "No changes to commit"
+    git push || echo "Push failed (maybe no changes)"
