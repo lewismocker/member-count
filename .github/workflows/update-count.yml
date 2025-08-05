@@ -2,8 +2,8 @@ name: Update Member Count
 
 on:
   schedule:
-    - cron: '0 * * * *'  # every hour
-  workflow_dispatch:     # manual trigger
+    - cron: '* * * * *'        # Runs every minute
+  workflow_dispatch:           # Still allows manual runs
 
 jobs:
   update:
