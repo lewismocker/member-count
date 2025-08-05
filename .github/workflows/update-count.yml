@@ -20,9 +20,12 @@ jobs:
         run: node generate-count.js
 
       - name: Commit and Push
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
+          git remote set-url origin https://x-access-token:${TOKEN}@github.com/${{ github.repository }}
           git add count.json || true
           git commit -m "Update count" || echo "No changes to commit"
           git push || echo "Push failed (maybe no changes)"
