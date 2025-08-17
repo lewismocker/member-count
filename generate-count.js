@@ -4,7 +4,7 @@ const fs = require('fs');
 const COUNT_FILE = 'count.json';
 const MIN_CHANGE = -2;
 const MAX_CHANGE = 2;
-const TREND_BIAS = 0.2; // ~50–60 growth per month
+const TREND_BIAS = 0.06; // ~50–60 growth per month
 
 // === Load current count ===
 let currentCount = 1000;
